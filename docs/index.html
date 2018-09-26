@@ -73,6 +73,8 @@
 <a href="#h3js" class="anchor"></a>h3js</h1></div>
 
 <p>R bindings to <a href="https://github.com/uber/h3">H3</a>, a hexagon-based geographic grid system via <a href="https://github.com/uber/h3-js">h3-js</a>.</p>
+<p>R bindings via native H3 C library can be found at <a href="https://github.com/scottmmjackson/h3r">h3r</a>. <code>h3r</code> is much faster but requires installing <code>h3</code> separately.</p>
+<p><strong>WARNING</strong> Functions do not support vectorized operations currently. The return value of vectorized input is unspecified. You should map over vectorized input instead.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -161,6 +163,29 @@
 <a class="sourceLine" id="cb4-35" data-line-number="35"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/sf">st_sf</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-36" data-line-number="36"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>()</a></code></pre></div>
 <p><img src="reference/figures/README-algo-1.png" width="100%"></p>
+</div>
+<div id="benchmark" class="section level2">
+<h2 class="hasAnchor">
+<a href="#benchmark" class="anchor"></a>Benchmark</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">Houston &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">lat =</span> <span class="fl">29.7632836</span>, <span class="dt">lon =</span> <span class="fl">-95.3632715</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">microbenchmark<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/microbenchmark/topics/microbenchmark">microbenchmark</a></span>(</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">  h3r<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/h3r/topics/getIndexFromCoords">getIndexFromCoords</a></span>(Houston<span class="op">$</span>lat, Houston<span class="op">$</span>lon, <span class="dt">resolution =</span> <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">  <span class="kw"><a href="reference/h3_geo_to_h3.html">h3_geo_to_h3</a></span>(Houston<span class="op">$</span>lat, Houston<span class="op">$</span>lon, <span class="dt">res =</span> <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">  h3r<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/h3r/topics/getBoundingHexFromCoords">getBoundingHexFromCoords</a></span>(Houston<span class="op">$</span>lat, Houston<span class="op">$</span>lon, <span class="dt">resolution =</span> <span class="dv">5</span>),</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">  <span class="kw"><a href="reference/h3_to_geo_boundary.html">h3_to_geo_boundary</a></span>(<span class="kw"><a href="reference/h3_geo_to_h3.html">h3_geo_to_h3</a></span>(Houston<span class="op">$</span>lat, Houston<span class="op">$</span>lon, <span class="dt">res =</span> <span class="dv">5</span>))</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">)</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; Unit: microseconds</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;                                                                     expr</span></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt;        h3r::getIndexFromCoords(Houston$lat, Houston$lon, resolution = 5)</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt;                          h3_geo_to_h3(Houston$lat, Houston$lon, res = 5)</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt;  h3r::getBoundingHexFromCoords(Houston$lat, Houston$lon, resolution = 5)</span></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt;      h3_to_geo_boundary(h3_geo_to_h3(Houston$lat, Houston$lon, res = 5))</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt;       min        lq       mean    median        uq       max neval</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt;    12.074   29.1875  142.95902   42.3495   60.9185  9666.731   100</span></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;   729.252 1065.5555 1725.82045 1501.5660 2151.0500  5801.808   100</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt;    17.404   34.8925   56.74685   50.5785   59.7705   406.992   100</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt;  1361.911 2132.8900 3377.73784 2801.3605 3811.4555 17681.988   100</span></a></code></pre></div>
 </div>
 </div>
   </div>

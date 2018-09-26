@@ -12,8 +12,13 @@ status](https://www.r-pkg.org/badges/version/h3js)](https://cran.r-project.org/p
 R bindings to [H3](https://github.com/uber/h3), a hexagon-based
 geographic grid system via [h3-js](https://github.com/uber/h3-js).
 
+R bindings via native H3 C library can be found at
+[h3r](https://github.com/scottmmjackson/h3r). `h3r` is much faster but
+requires installing `h3` separately.
+
 **WARNING** Functions do not support vectorized operations currently.
-The return value of vectorized input is unspecified.
+The return value of vectorized input is unspecified. You should map over
+vectorized input instead.
 
 ## Installation
 
@@ -114,3 +119,27 @@ c(
 ```
 
 <img src="man/figures/README-algo-1.png" width="100%" />
+
+## Benchmark
+
+``` r
+Houston <- list(lat = 29.7632836, lon = -95.3632715)
+
+microbenchmark::microbenchmark(
+  h3r::getIndexFromCoords(Houston$lat, Houston$lon, resolution = 5),
+  h3_geo_to_h3(Houston$lat, Houston$lon, res = 5),
+  h3r::getBoundingHexFromCoords(Houston$lat, Houston$lon, resolution = 5),
+  h3_to_geo_boundary(h3_geo_to_h3(Houston$lat, Houston$lon, res = 5))
+)
+#> Unit: microseconds
+#>                                                                     expr
+#>        h3r::getIndexFromCoords(Houston$lat, Houston$lon, resolution = 5)
+#>                          h3_geo_to_h3(Houston$lat, Houston$lon, res = 5)
+#>  h3r::getBoundingHexFromCoords(Houston$lat, Houston$lon, resolution = 5)
+#>      h3_to_geo_boundary(h3_geo_to_h3(Houston$lat, Houston$lon, res = 5))
+#>       min        lq       mean    median        uq       max neval
+#>    12.222   22.1705   42.58583   39.2685   47.2505   260.753   100
+#>   696.615  872.3365 1558.20883 1153.9360 1531.1255 16486.304   100
+#>    17.736   26.0950  129.76199   41.6460   57.4520  7903.174   100
+#>  1355.409 1830.2050 3086.73508 2481.1620 3711.8015 10519.621   100
+```
