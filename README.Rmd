@@ -1,0 +1,100 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# h3js
+
+R bindings to [H3](https://github.com/uber/h3), a hexagon-based geographic grid system via [h3-js](https://github.com/uber/h3-js).
+
+## Installation
+
+You can install the released version of h3js from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("h3js")
+```
+
+Development version can be installed with:
+
+
+```r
+devtools::install_github("saurfang/h3js")
+```
+
+## Core functions
+
+```{r core, message=FALSE}
+library(h3js)
+library(sf)
+library(tidyverse)
+
+# Convert a lat/lng point to a hexagon index at resolution 7
+h3_index <- h3_geo_to_h3(37.3615593, -122.0553238, 7)
+h3_index
+
+# Get the center of the hexagon
+hex_center_coordinates <- h3_to_geo(h3_index)
+hex_center_coordinates
+
+# Get the vertices of the hexagon
+hex_boundary <- h3_to_geo_boundary(h3_index)
+hex_boundary
+
+hex_boundary %>%
+  # close polygon
+  rbind(.[1,]) %>%
+  # swap columns
+  .[, c(2, 1)] %>%
+  # convert to simple feature collection
+  list() %>%
+  st_polygon() %>%
+  st_sfc() %>%
+  plot()
+```
+
+## Useful algorithms
+
+```{r algo, message=FALSE}
+# Get all neighbors within 1 step of the hexagon
+h3_k_ring(h3_index, 1)
+
+# Get the set of hexagons within a polygon
+polygon <- list(
+    c(37.813318999983238, -122.4089866999972145),
+    c(37.7198061999978478, -122.3544736999993603),
+    c(37.8151571999998453, -122.4798767000009008)
+)
+hexagons <- h3_polyfill(polygon, 7)
+hexagons
+
+# Get the outline of a set of hexagons, as a GeoJSON-style MultiPolygon
+coordinates <- h3_set_to_multi_polygon(hexagons, TRUE)
+
+c(
+  coordinates %>%
+    map(~ matrix(.x, ncol = 2)) %>%
+    map(list) %>%
+    st_multipolygon() %>%
+    st_sfc(),
+  do.call(rbind, polygon) %>%
+    # close polygon
+    rbind(.[1,]) %>%
+    # swap columns
+    .[, c(2, 1)] %>%
+    list %>%
+    st_polygon() %>%
+    st_sfc()
+) %>%
+  st_sf() %>%
+  plot()
+```

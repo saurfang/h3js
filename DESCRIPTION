@@ -1,14 +1,20 @@
 Package: h3js
-Title: What the Package Does (One Line, Title Case)
+Title: R bindings to H3 via h3-js
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
+Authors@R: c(
+    person(given = "Forest",
+           family = "Fang",
            role = c("aut", "cre"),
-           email = "first.last@example.com")
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "saurfang@users.noreply.github.com"),
+    person("Uber Technologies, Inc.", 
+           role = c("cph"),
+           comment = "Author of included h3-js code")
+    )
+Description: R bindings to H3 Core Library via h3-js Javascript bindings.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
+Imports: 
+    V8

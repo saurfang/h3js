@@ -1,2 +1,5 @@
+^LICENSE\.md$
+^README\.Rmd$
+^bootstrap\.R$
 ^h3js\.Rproj$
 ^\.Rproj\.user$
