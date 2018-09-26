@@ -7,7 +7,7 @@
 h3_get_h3_unidirectional_edges_from_hexagon(h3Index)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index of the origin hexagon}
+\item{h3Index}{\code{H3Index} H3 index of the origin hexagon}
 }
 \value{
 \code{Array.<H3Index>} - List of unidirectional edges

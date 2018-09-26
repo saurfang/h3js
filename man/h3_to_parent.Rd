@@ -7,9 +7,9 @@
 h3_to_parent(h3Index, res)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index to get parent for}
+\item{h3Index}{\code{H3Index} H3 index to get parent for}
 
-\item{res}{Number Resolution of hexagon to return}
+\item{res}{\code{Number} Resolution of hexagon to return}
 }
 \value{
 \code{H3Index} - H3 index of parent, or null for invalid input

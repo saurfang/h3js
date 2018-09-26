@@ -7,7 +7,7 @@
 h3_get_resolution(h3Index)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index to get resolution}
+\item{h3Index}{\code{H3Index} H3 index to get resolution}
 }
 \value{
 \code{Number} - The number (0-15) resolution, or -1 if invalid

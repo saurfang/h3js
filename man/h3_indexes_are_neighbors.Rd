@@ -7,9 +7,9 @@
 h3_indexes_are_neighbors(origin, destination)
 }
 \arguments{
-\item{origin}{H3Index Origin hexagon index}
+\item{origin}{\code{H3Index} Origin hexagon index}
 
-\item{destination}{H3Index Destination hexagon index}
+\item{destination}{\code{H3Index} Destination hexagon index}
 }
 \value{
 \code{Boolean} - Whether the hexagons share an edge

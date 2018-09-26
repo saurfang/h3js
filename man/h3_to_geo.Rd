@@ -7,7 +7,7 @@
 h3_to_geo(h3Index)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index}
+\item{h3Index}{\code{H3Index} H3 index}
 }
 \value{
 \code{Array.<Number>} - Point as a \code{[lat, lng]} pair

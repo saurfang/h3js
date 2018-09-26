@@ -8,9 +8,9 @@ h3_get_h3_unidirectional_edge_boundary(edgeIndex,
   formatAsGeoJson = FALSE)
 }
 \arguments{
-\item{edgeIndex}{H3Index H3 index of the edge}
+\item{edgeIndex}{\code{H3Index} H3 index of the edge}
 
-\item{formatAsGeoJson}{Boolean Whether to provide GeoJSON output: \code{[lng, lat]}}
+\item{formatAsGeoJson}{\code{Boolean} Whether to provide GeoJSON output: \code{[lng, lat]}}
 }
 \value{
 \code{Array.<Array>} - Array of geo coordinate pairs

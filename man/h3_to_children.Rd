@@ -7,9 +7,9 @@
 h3_to_children(h3Index, res)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index to get children for}
+\item{h3Index}{\code{H3Index} H3 index to get children for}
 
-\item{res}{Number Resolution of hexagons to return}
+\item{res}{\code{Number} Resolution of hexagons to return}
 }
 \value{
 \code{Array.<H3Index>} - H3 indexes of children, or empty array for invalid input

@@ -5,6 +5,9 @@
 
 [![Travis build
 status](https://travis-ci.org/saurfang/h3js.svg?branch=master)](https://travis-ci.org/saurfang/h3js)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/h3js)](https://cran.r-project.org/package=h3js)
 
 R bindings to [H3](https://github.com/uber/h3), a hexagon-based
 geographic grid system via [h3-js](https://github.com/uber/h3-js).

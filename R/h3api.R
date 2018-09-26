@@ -4,7 +4,7 @@
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index to check
+#' @param h3Index `H3Index` H3 index to check
 #' @return `Boolean` - Whether the index is valid
 #' @export
 h3_is_valid <- function(h3Index) {
@@ -16,7 +16,7 @@ h3_is_valid <- function(h3Index) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index to check
+#' @param h3Index `H3Index` H3 index to check
 #' @return `Boolean` - isPentagon
 #' @export
 h3_is_pentagon <- function(h3Index) {
@@ -28,7 +28,7 @@ h3_is_pentagon <- function(h3Index) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index to check
+#' @param h3Index `H3Index` H3 index to check
 #' @return `Boolean` - isResClassIII
 #' @export
 h3_is_res_class_iii <- function(h3Index) {
@@ -40,7 +40,7 @@ h3_is_res_class_iii <- function(h3Index) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index to get the base cell for
+#' @param h3Index `H3Index` H3 index to get the base cell for
 #' @return `Number` - Index of the base cell (0-121)
 #' @export
 h3_get_base_cell <- function(h3Index) {
@@ -52,7 +52,7 @@ h3_get_base_cell <- function(h3Index) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index to get resolution
+#' @param h3Index `H3Index` H3 index to get resolution
 #' @return `Number` - The number (0-15) resolution, or -1 if invalid
 #' @export
 h3_get_resolution <- function(h3Index) {
@@ -64,9 +64,9 @@ h3_get_resolution <- function(h3Index) {
 #'
 #'
 #'
-#' @param lat Number Latitude of point
-#' @param lng Number Longtitude of point
-#' @param res Number Resolution of hexagons to return
+#' @param lat `Number` Latitude of point
+#' @param lng `Number` Longtitude of point
+#' @param res `Number` Resolution of hexagons to return
 #' @return `H3Index` - H3 index
 #' @export
 h3_geo_to_h3 <- function(lat, lng, res) {
@@ -78,7 +78,7 @@ h3_geo_to_h3 <- function(lat, lng, res) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index
+#' @param h3Index `H3Index` H3 index
 #' @return `Array.<Number>` - Point as a `[lat, lng]` pair
 #' @export
 h3_to_geo <- function(h3Index) {
@@ -90,8 +90,8 @@ h3_to_geo <- function(h3Index) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index
-#' @param formatAsGeoJson Boolean Whether to provide GeoJSON output: `[lng, lat]`, closed loops
+#' @param h3Index `H3Index` H3 index
+#' @param formatAsGeoJson `Boolean` Whether to provide GeoJSON output: `[lng, lat]`, closed loops
 #' @return `Array.<Array>` - Array of `[lat, lng]` pairs
 #' @export
 h3_to_geo_boundary <- function(h3Index, formatAsGeoJson = FALSE) {
@@ -103,8 +103,8 @@ h3_to_geo_boundary <- function(h3Index, formatAsGeoJson = FALSE) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index to get parent for
-#' @param res Number Resolution of hexagon to return
+#' @param h3Index `H3Index` H3 index to get parent for
+#' @param res `Number` Resolution of hexagon to return
 #' @return `H3Index` - H3 index of parent, or null for invalid input
 #' @export
 h3_to_parent <- function(h3Index, res) {
@@ -116,8 +116,8 @@ h3_to_parent <- function(h3Index, res) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index to get children for
-#' @param res Number Resolution of hexagons to return
+#' @param h3Index `H3Index` H3 index to get children for
+#' @param res `Number` Resolution of hexagons to return
 #' @return `Array.<H3Index>` - H3 indexes of children, or empty array for invalid input
 #' @export
 h3_to_children <- function(h3Index, res) {
@@ -129,8 +129,8 @@ h3_to_children <- function(h3Index, res) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index of center hexagon
-#' @param ringSize Number Radius of k-ring
+#' @param h3Index `H3Index` H3 index of center hexagon
+#' @param ringSize `Number` Radius of k-ring
 #' @return `Array.<H3Index>` - H3 indexes for all hexagons in ring
 #' @export
 h3_k_ring <- function(h3Index, ringSize) {
@@ -142,8 +142,8 @@ h3_k_ring <- function(h3Index, ringSize) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index of center hexagon
-#' @param ringSize Number Radius of k-ring
+#' @param h3Index `H3Index` H3 index of center hexagon
+#' @param ringSize `Number` Radius of k-ring
 #' @return `Array.<Array.<H3Index>>` - Array of arrays with H3 indexes for all hexagons each ring
 #' @export
 h3_k_ring_distances <- function(h3Index, ringSize) {
@@ -155,8 +155,8 @@ h3_k_ring_distances <- function(h3Index, ringSize) {
 #'
 #' Throws `Error` If the algorithm could not calculate the ring
 #'
-#' @param h3Index H3Index H3 index of center hexagon
-#' @param ringSize Number Radius of ring
+#' @param h3Index `H3Index` H3 index of center hexagon
+#' @param ringSize `Number` Radius of ring
 #' @return `Array.<H3Index>` - H3 indexes for all hexagons in ring
 #' @export
 h3_hex_ring <- function(h3Index, ringSize) {
@@ -168,9 +168,9 @@ h3_hex_ring <- function(h3Index, ringSize) {
 #'
 #'
 #'
-#' @param coordinates Array.<Array> Array of loops, or a single loop
-#' @param res Number Resolution of hexagons to return
-#' @param isGeoJson Boolean Whether to expect GeoJson-style `[lng, lat]`                                 pairs instead of `[lat, lng]`
+#' @param coordinates `Array.<Array>` Array of loops, or a single loop
+#' @param res `Number` Resolution of hexagons to return
+#' @param isGeoJson `Boolean` Whether to expect GeoJson-style `[lng, lat]`                                 pairs instead of `[lat, lng]`
 #' @return `Array.<H3Index>` - H3 indexes for all hexagons in polygon
 #' @export
 h3_polyfill <- function(coordinates, res, isGeoJson = FALSE) {
@@ -182,8 +182,8 @@ h3_polyfill <- function(coordinates, res, isGeoJson = FALSE) {
 #'
 #'
 #'
-#' @param h3Indexes Array.<H3Index> H3 indexes to get outlines for
-#' @param formatAsGeoJson Boolean Whether to provide GeoJSON output:                                   `[lng, lat]`, closed loops
+#' @param h3Indexes `Array.<H3Index>` H3 indexes to get outlines for
+#' @param formatAsGeoJson `Boolean` Whether to provide GeoJSON output:                                   `[lng, lat]`, closed loops
 #' @return `Array.<Array>` - MultiPolygon-style output.
 #' @export
 h3_set_to_multi_polygon <- function(h3Indexes, formatAsGeoJson = FALSE) {
@@ -195,7 +195,7 @@ h3_set_to_multi_polygon <- function(h3Indexes, formatAsGeoJson = FALSE) {
 #'
 #' Throws `Error` If the input is invalid (e.g. duplicate hexagons)
 #'
-#' @param h3Set Array.<H3Index> H3 indexes to compact
+#' @param h3Set `Array.<H3Index>` H3 indexes to compact
 #' @return `Array.<H3Index>` - Compacted H3 indexes
 #' @export
 h3_compact <- function(h3Set) {
@@ -207,8 +207,8 @@ h3_compact <- function(h3Set) {
 #'
 #' Throws `Error` If the input is invalid (e.g. invalid resolution)
 #'
-#' @param compactedSet Array.<H3Index> H3 indexes to uncompact
-#' @param res Number The resolution to uncompact to
+#' @param compactedSet `Array.<H3Index>` H3 indexes to uncompact
+#' @param res `Number` The resolution to uncompact to
 #' @return `Array.<H3Index>` - The uncompacted H3 indexes
 #' @export
 h3_uncompact <- function(compactedSet, res) {
@@ -220,8 +220,8 @@ h3_uncompact <- function(compactedSet, res) {
 #'
 #'
 #'
-#' @param origin H3Index Origin hexagon index
-#' @param destination H3Index Destination hexagon index
+#' @param origin `H3Index` Origin hexagon index
+#' @param destination `H3Index` Destination hexagon index
 #' @return `Boolean` - Whether the hexagons share an edge
 #' @export
 h3_indexes_are_neighbors <- function(origin, destination) {
@@ -233,8 +233,8 @@ h3_indexes_are_neighbors <- function(origin, destination) {
 #'
 #'
 #'
-#' @param origin H3Index Origin hexagon index
-#' @param destination H3Index Destination hexagon index
+#' @param origin `H3Index` Origin hexagon index
+#' @param destination `H3Index` Destination hexagon index
 #' @return `H3Index` - H3 index of the edge, or null if no edge is shared
 #' @export
 h3_get_h3_unidirectional_edge <- function(origin, destination) {
@@ -246,7 +246,7 @@ h3_get_h3_unidirectional_edge <- function(origin, destination) {
 #'
 #'
 #'
-#' @param edgeIndex H3Index H3 index of the edge
+#' @param edgeIndex `H3Index` H3 index of the edge
 #' @return `H3Index` - H3 index of the edge origin
 #' @export
 h3_get_origin_h3_index_from_unidirectional_edge <- function(edgeIndex) {
@@ -258,7 +258,7 @@ h3_get_origin_h3_index_from_unidirectional_edge <- function(edgeIndex) {
 #'
 #'
 #'
-#' @param edgeIndex H3Index H3 index of the edge
+#' @param edgeIndex `H3Index` H3 index of the edge
 #' @return `H3Index` - H3 index of the edge destination
 #' @export
 h3_get_destination_h3_index_from_unidirectional_edge <- function(edgeIndex) {
@@ -270,7 +270,7 @@ h3_get_destination_h3_index_from_unidirectional_edge <- function(edgeIndex) {
 #'
 #'
 #'
-#' @param edgeIndex H3Index H3 index of the edge
+#' @param edgeIndex `H3Index` H3 index of the edge
 #' @return `Boolean` - Whether the index is valid
 #' @export
 h3_unidirectional_edge_is_valid <- function(edgeIndex) {
@@ -282,7 +282,7 @@ h3_unidirectional_edge_is_valid <- function(edgeIndex) {
 #'
 #'
 #'
-#' @param edgeIndex H3Index H3 index of the edge
+#' @param edgeIndex `H3Index` H3 index of the edge
 #' @return `Array.<H3Index>` - `[origin, destination]` pair as H3 indexes
 #' @export
 h3_get_h3_indexes_from_unidirectional_edge <- function(edgeIndex) {
@@ -294,7 +294,7 @@ h3_get_h3_indexes_from_unidirectional_edge <- function(edgeIndex) {
 #'
 #'
 #'
-#' @param h3Index H3Index H3 index of the origin hexagon
+#' @param h3Index `H3Index` H3 index of the origin hexagon
 #' @return `Array.<H3Index>` - List of unidirectional edges
 #' @export
 h3_get_h3_unidirectional_edges_from_hexagon <- function(h3Index) {
@@ -306,8 +306,8 @@ h3_get_h3_unidirectional_edges_from_hexagon <- function(h3Index) {
 #'
 #'
 #'
-#' @param edgeIndex H3Index H3 index of the edge
-#' @param formatAsGeoJson Boolean Whether to provide GeoJSON output: `[lng, lat]`
+#' @param edgeIndex `H3Index` H3 index of the edge
+#' @param formatAsGeoJson `Boolean` Whether to provide GeoJSON output: `[lng, lat]`
 #' @return `Array.<Array>` - Array of geo coordinate pairs
 #' @export
 h3_get_h3_unidirectional_edge_boundary <- function(edgeIndex, formatAsGeoJson = FALSE) {
@@ -319,8 +319,8 @@ h3_get_h3_unidirectional_edge_boundary <- function(edgeIndex, formatAsGeoJson = 
 #'
 #'
 #'
-#' @param origin H3Index Origin hexagon index
-#' @param destination H3Index Destination hexagon index
+#' @param origin `H3Index` Origin hexagon index
+#' @param destination `H3Index` Destination hexagon index
 #' @return `Number` - Distance between hexagons, or a negative                              number if the distance could not be computed
 #' @export
 h3_distance <- function(origin, destination) {
@@ -332,8 +332,8 @@ h3_distance <- function(origin, destination) {
 #'
 #' Throws `Error` If the unit is invalid
 #'
-#' @param res Number Hexagon resolution
-#' @param unit String Area unit (either UNITS.m2 or UNITS.km2)
+#' @param res `Number` Hexagon resolution
+#' @param unit `String` Area unit (either UNITS.m2 or UNITS.km2)
 #' @return `Number` - Average area
 #' @export
 h3_hex_area <- function(res, unit) {
@@ -345,8 +345,8 @@ h3_hex_area <- function(res, unit) {
 #'
 #' Throws `Error` If the unit is invalid
 #'
-#' @param res Number Hexagon resolution
-#' @param unit String Area unit (either UNITS.m or UNITS.km)
+#' @param res `Number` Hexagon resolution
+#' @param unit `String` Area unit (either UNITS.m or UNITS.km)
 #' @return `Number` - Average edge length
 #' @export
 h3_edge_length <- function(res, unit) {
@@ -358,7 +358,7 @@ h3_edge_length <- function(res, unit) {
 #'
 #'
 #'
-#' @param res Number Hexagon resolution
+#' @param res `Number` Hexagon resolution
 #' @return `Number` - Count
 #' @export
 h3_num_hexagons <- function(res) {
@@ -370,7 +370,7 @@ h3_num_hexagons <- function(res) {
 #'
 #'
 #'
-#' @param deg Number Value in degrees
+#' @param deg `Number` Value in degrees
 #' @return `Number` - Value in radians
 #' @export
 h3_degs_to_rads <- function(deg) {
@@ -382,7 +382,7 @@ h3_degs_to_rads <- function(deg) {
 #'
 #'
 #'
-#' @param rad Number Value in radians
+#' @param rad `Number` Value in radians
 #' @return `Number` - Value in degrees
 #' @export
 h3_rads_to_degs <- function(rad) {

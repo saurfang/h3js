@@ -18,3 +18,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
 Imports: 
     V8
+URL: https://github.com/saurfang/h3js
+BugReports: https://github.com/saurfang/h3js/issues

@@ -31,7 +31,7 @@ h3doc %>%
 
     params_doc <- params %>%
       pmap_chr(function(type, description, name) {
-        glue("#' @param {name} {type} {description}") %>% trim_br
+        glue("#' @param {name} `{type}` {description}") %>% trim_br
       }) %>%
       paste(collapse = "\n")
 

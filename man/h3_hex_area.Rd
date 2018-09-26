@@ -7,9 +7,9 @@
 h3_hex_area(res, unit)
 }
 \arguments{
-\item{res}{Number Hexagon resolution}
+\item{res}{\code{Number} Hexagon resolution}
 
-\item{unit}{String Area unit (either UNITS.m2 or UNITS.km2)}
+\item{unit}{\code{String} Area unit (either UNITS.m2 or UNITS.km2)}
 }
 \value{
 \code{Number} - Average area

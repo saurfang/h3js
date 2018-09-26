@@ -7,9 +7,9 @@
 h3_k_ring(h3Index, ringSize)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index of center hexagon}
+\item{h3Index}{\code{H3Index} H3 index of center hexagon}
 
-\item{ringSize}{Number Radius of k-ring}
+\item{ringSize}{\code{Number} Radius of k-ring}
 }
 \value{
 \code{Array.<H3Index>} - H3 indexes for all hexagons in ring

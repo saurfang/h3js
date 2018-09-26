@@ -7,7 +7,7 @@
 h3_is_res_class_iii(h3Index)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index to check}
+\item{h3Index}{\code{H3Index} H3 index to check}
 }
 \value{
 \code{Boolean} - isResClassIII

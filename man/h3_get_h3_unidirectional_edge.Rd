@@ -7,9 +7,9 @@
 h3_get_h3_unidirectional_edge(origin, destination)
 }
 \arguments{
-\item{origin}{H3Index Origin hexagon index}
+\item{origin}{\code{H3Index} Origin hexagon index}
 
-\item{destination}{H3Index Destination hexagon index}
+\item{destination}{\code{H3Index} Destination hexagon index}
 }
 \value{
 \code{H3Index} - H3 index of the edge, or null if no edge is shared

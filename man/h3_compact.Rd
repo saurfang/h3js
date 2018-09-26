@@ -7,7 +7,7 @@
 h3_compact(h3Set)
 }
 \arguments{
-\item{h3Set}{Array.<H3Index> H3 indexes to compact}
+\item{h3Set}{\code{Array.<H3Index>} H3 indexes to compact}
 }
 \value{
 \code{Array.<H3Index>} - Compacted H3 indexes

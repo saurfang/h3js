@@ -7,7 +7,7 @@
 h3_get_h3_indexes_from_unidirectional_edge(edgeIndex)
 }
 \arguments{
-\item{edgeIndex}{H3Index H3 index of the edge}
+\item{edgeIndex}{\code{H3Index} H3 index of the edge}
 }
 \value{
 \code{Array.<H3Index>} - \code{[origin, destination]} pair as H3 indexes

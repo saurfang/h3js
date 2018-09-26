@@ -7,9 +7,9 @@
 h3_distance(origin, destination)
 }
 \arguments{
-\item{origin}{H3Index Origin hexagon index}
+\item{origin}{\code{H3Index} Origin hexagon index}
 
-\item{destination}{H3Index Destination hexagon index}
+\item{destination}{\code{H3Index} Destination hexagon index}
 }
 \value{
 \code{Number} - Distance between hexagons, or a negative                              number if the distance could not be computed

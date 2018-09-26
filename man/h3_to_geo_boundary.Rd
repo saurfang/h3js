@@ -7,9 +7,9 @@
 h3_to_geo_boundary(h3Index, formatAsGeoJson = FALSE)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index}
+\item{h3Index}{\code{H3Index} H3 index}
 
-\item{formatAsGeoJson}{Boolean Whether to provide GeoJSON output: \code{[lng, lat]}, closed loops}
+\item{formatAsGeoJson}{\code{Boolean} Whether to provide GeoJSON output: \code{[lng, lat]}, closed loops}
 }
 \value{
 \code{Array.<Array>} - Array of \code{[lat, lng]} pairs

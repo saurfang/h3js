@@ -7,9 +7,9 @@
 h3_edge_length(res, unit)
 }
 \arguments{
-\item{res}{Number Hexagon resolution}
+\item{res}{\code{Number} Hexagon resolution}
 
-\item{unit}{String Area unit (either UNITS.m or UNITS.km)}
+\item{unit}{\code{String} Area unit (either UNITS.m or UNITS.km)}
 }
 \value{
 \code{Number} - Average edge length

@@ -7,7 +7,7 @@
 h3_get_base_cell(h3Index)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index to get the base cell for}
+\item{h3Index}{\code{H3Index} H3 index to get the base cell for}
 }
 \value{
 \code{Number} - Index of the base cell (0-121)

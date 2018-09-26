@@ -7,7 +7,7 @@
 h3_degs_to_rads(deg)
 }
 \arguments{
-\item{deg}{Number Value in degrees}
+\item{deg}{\code{Number} Value in degrees}
 }
 \value{
 \code{Number} - Value in radians

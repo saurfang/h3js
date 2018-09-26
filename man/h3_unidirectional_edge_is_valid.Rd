@@ -7,7 +7,7 @@
 h3_unidirectional_edge_is_valid(edgeIndex)
 }
 \arguments{
-\item{edgeIndex}{H3Index H3 index of the edge}
+\item{edgeIndex}{\code{H3Index} H3 index of the edge}
 }
 \value{
 \code{Boolean} - Whether the index is valid

@@ -7,7 +7,7 @@
 h3_is_valid(h3Index)
 }
 \arguments{
-\item{h3Index}{H3Index H3 index to check}
+\item{h3Index}{\code{H3Index} H3 index to check}
 }
 \value{
 \code{Boolean} - Whether the index is valid

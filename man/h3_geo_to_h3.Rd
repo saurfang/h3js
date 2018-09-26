@@ -7,11 +7,11 @@
 h3_geo_to_h3(lat, lng, res)
 }
 \arguments{
-\item{lat}{Number Latitude of point}
+\item{lat}{\code{Number} Latitude of point}
 
-\item{lng}{Number Longtitude of point}
+\item{lng}{\code{Number} Longtitude of point}
 
-\item{res}{Number Resolution of hexagons to return}
+\item{res}{\code{Number} Resolution of hexagons to return}
 }
 \value{
 \code{H3Index} - H3 index

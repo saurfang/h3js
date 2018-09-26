@@ -7,7 +7,7 @@
 h3_num_hexagons(res)
 }
 \arguments{
-\item{res}{Number Hexagon resolution}
+\item{res}{\code{Number} Hexagon resolution}
 }
 \value{
 \code{Number} - Count

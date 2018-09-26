@@ -7,11 +7,11 @@
 h3_polyfill(coordinates, res, isGeoJson = FALSE)
 }
 \arguments{
-\item{coordinates}{Array.<Array> Array of loops, or a single loop}
+\item{coordinates}{\code{Array.<Array>} Array of loops, or a single loop}
 
-\item{res}{Number Resolution of hexagons to return}
+\item{res}{\code{Number} Resolution of hexagons to return}
 
-\item{isGeoJson}{Boolean Whether to expect GeoJson-style \code{[lng, lat]}                                 pairs instead of \code{[lat, lng]}}
+\item{isGeoJson}{\code{Boolean} Whether to expect GeoJson-style \code{[lng, lat]}                                 pairs instead of \code{[lat, lng]}}
 }
 \value{
 \code{Array.<H3Index>} - H3 indexes for all hexagons in polygon

@@ -7,9 +7,9 @@
 h3_uncompact(compactedSet, res)
 }
 \arguments{
-\item{compactedSet}{Array.<H3Index> H3 indexes to uncompact}
+\item{compactedSet}{\code{Array.<H3Index>} H3 indexes to uncompact}
 
-\item{res}{Number The resolution to uncompact to}
+\item{res}{\code{Number} The resolution to uncompact to}
 }
 \value{
 \code{Array.<H3Index>} - The uncompacted H3 indexes
