@@ -3,6 +3,9 @@
 
 # h3js
 
+[![Travis build
+status](https://travis-ci.org/saurfang/h3js.svg?branch=master)](https://travis-ci.org/saurfang/h3js)
+
 R bindings to [H3](https://github.com/uber/h3), a hexagon-based
 geographic grid system via [h3-js](https://github.com/uber/h3-js).
 
