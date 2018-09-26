@@ -12,6 +12,9 @@ status](https://www.r-pkg.org/badges/version/h3js)](https://cran.r-project.org/p
 R bindings to [H3](https://github.com/uber/h3), a hexagon-based
 geographic grid system via [h3-js](https://github.com/uber/h3-js).
 
+**WARNING** Functions do not support vectorized operations currently.
+The return value of vectorized input is unspecified.
+
 ## Installation
 
 You can install the released version of h3js from
