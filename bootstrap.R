@@ -54,6 +54,7 @@ h3doc %>%
         }
       }) %>%
       paste(collapse = ", ")
+    vectorizable <- params$type %>% unique %>% length == 1
     params <- paste(params$name, collapse = ", ")
 
     returns <- glue("`{returns$type$names}` - {returns$description}") %>% trim_br
@@ -61,6 +62,12 @@ h3doc %>%
     fun_name <- to_snake_case(name, numerals = "left")
     doc_name <- to_sentence_case(fun_name, numerals = "left")
     if (!startsWith(fun_name, "h3")) fun_name <- paste0("h3_", fun_name)
+
+    func_body <- if (vectorizable) {
+      glue(".h3js_env$v8_context$call('vectorize', V8::JS('h3.{name}'), {params})")
+    } else {
+      glue(".h3js_env$v8_context$call('h3.{name}', {params})")
+    }
 
     glue(
       "
@@ -74,7 +81,7 @@ h3doc %>%
 #' @return {returns}
 #' @export
 {fun_name} <- function({params_with_defaults}) {{
-  .h3js_env$v8_context$call('h3.{name}', {params})
+  {func_body}
 }}
       "
     )

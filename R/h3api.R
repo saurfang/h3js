@@ -8,7 +8,7 @@
 #' @return `Boolean` - Whether the index is valid
 #' @export
 h3_is_valid <- function(h3Index) {
-  .h3js_env$v8_context$call('h3.h3IsValid', h3Index)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3IsValid'), h3Index)
 }
 #' H3 is pentagon
 #'
@@ -20,7 +20,7 @@ h3_is_valid <- function(h3Index) {
 #' @return `Boolean` - isPentagon
 #' @export
 h3_is_pentagon <- function(h3Index) {
-  .h3js_env$v8_context$call('h3.h3IsPentagon', h3Index)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3IsPentagon'), h3Index)
 }
 #' H3 is res class iii
 #'
@@ -32,7 +32,7 @@ h3_is_pentagon <- function(h3Index) {
 #' @return `Boolean` - isResClassIII
 #' @export
 h3_is_res_class_iii <- function(h3Index) {
-  .h3js_env$v8_context$call('h3.h3IsResClassIII', h3Index)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3IsResClassIII'), h3Index)
 }
 #' H3 get base cell
 #'
@@ -44,7 +44,7 @@ h3_is_res_class_iii <- function(h3Index) {
 #' @return `Number` - Index of the base cell (0-121)
 #' @export
 h3_get_base_cell <- function(h3Index) {
-  .h3js_env$v8_context$call('h3.h3GetBaseCell', h3Index)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3GetBaseCell'), h3Index)
 }
 #' H3 get resolution
 #'
@@ -56,7 +56,7 @@ h3_get_base_cell <- function(h3Index) {
 #' @return `Number` - The number (0-15) resolution, or -1 if invalid
 #' @export
 h3_get_resolution <- function(h3Index) {
-  .h3js_env$v8_context$call('h3.h3GetResolution', h3Index)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3GetResolution'), h3Index)
 }
 #' Geo to h3
 #'
@@ -70,7 +70,7 @@ h3_get_resolution <- function(h3Index) {
 #' @return `H3Index` - H3 index
 #' @export
 h3_geo_to_h3 <- function(lat, lng, res) {
-  .h3js_env$v8_context$call('h3.geoToH3', lat, lng, res)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.geoToH3'), lat, lng, res)
 }
 #' H3 to geo
 #'
@@ -82,7 +82,7 @@ h3_geo_to_h3 <- function(lat, lng, res) {
 #' @return `Array.<Number>` - Point as a `[lat, lng]` pair
 #' @export
 h3_to_geo <- function(h3Index) {
-  .h3js_env$v8_context$call('h3.h3ToGeo', h3Index)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3ToGeo'), h3Index)
 }
 #' H3 to geo boundary
 #'
@@ -199,7 +199,7 @@ h3_set_to_multi_polygon <- function(h3Indexes, formatAsGeoJson = FALSE) {
 #' @return `Array.<H3Index>` - Compacted H3 indexes
 #' @export
 h3_compact <- function(h3Set) {
-  .h3js_env$v8_context$call('h3.compact', h3Set)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.compact'), h3Set)
 }
 #' Uncompact
 #'
@@ -225,7 +225,7 @@ h3_uncompact <- function(compactedSet, res) {
 #' @return `Boolean` - Whether the hexagons share an edge
 #' @export
 h3_indexes_are_neighbors <- function(origin, destination) {
-  .h3js_env$v8_context$call('h3.h3IndexesAreNeighbors', origin, destination)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3IndexesAreNeighbors'), origin, destination)
 }
 #' Get h3 unidirectional edge
 #'
@@ -238,7 +238,7 @@ h3_indexes_are_neighbors <- function(origin, destination) {
 #' @return `H3Index` - H3 index of the edge, or null if no edge is shared
 #' @export
 h3_get_h3_unidirectional_edge <- function(origin, destination) {
-  .h3js_env$v8_context$call('h3.getH3UnidirectionalEdge', origin, destination)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.getH3UnidirectionalEdge'), origin, destination)
 }
 #' Get origin h3 index from unidirectional edge
 #'
@@ -250,7 +250,7 @@ h3_get_h3_unidirectional_edge <- function(origin, destination) {
 #' @return `H3Index` - H3 index of the edge origin
 #' @export
 h3_get_origin_h3_index_from_unidirectional_edge <- function(edgeIndex) {
-  .h3js_env$v8_context$call('h3.getOriginH3IndexFromUnidirectionalEdge', edgeIndex)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.getOriginH3IndexFromUnidirectionalEdge'), edgeIndex)
 }
 #' Get destination h3 index from unidirectional edge
 #'
@@ -262,7 +262,7 @@ h3_get_origin_h3_index_from_unidirectional_edge <- function(edgeIndex) {
 #' @return `H3Index` - H3 index of the edge destination
 #' @export
 h3_get_destination_h3_index_from_unidirectional_edge <- function(edgeIndex) {
-  .h3js_env$v8_context$call('h3.getDestinationH3IndexFromUnidirectionalEdge', edgeIndex)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.getDestinationH3IndexFromUnidirectionalEdge'), edgeIndex)
 }
 #' H3 unidirectional edge is valid
 #'
@@ -274,7 +274,7 @@ h3_get_destination_h3_index_from_unidirectional_edge <- function(edgeIndex) {
 #' @return `Boolean` - Whether the index is valid
 #' @export
 h3_unidirectional_edge_is_valid <- function(edgeIndex) {
-  .h3js_env$v8_context$call('h3.h3UnidirectionalEdgeIsValid', edgeIndex)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3UnidirectionalEdgeIsValid'), edgeIndex)
 }
 #' Get h3 indexes from unidirectional edge
 #'
@@ -286,7 +286,7 @@ h3_unidirectional_edge_is_valid <- function(edgeIndex) {
 #' @return `Array.<H3Index>` - `[origin, destination]` pair as H3 indexes
 #' @export
 h3_get_h3_indexes_from_unidirectional_edge <- function(edgeIndex) {
-  .h3js_env$v8_context$call('h3.getH3IndexesFromUnidirectionalEdge', edgeIndex)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.getH3IndexesFromUnidirectionalEdge'), edgeIndex)
 }
 #' Get h3 unidirectional edges from hexagon
 #'
@@ -298,7 +298,7 @@ h3_get_h3_indexes_from_unidirectional_edge <- function(edgeIndex) {
 #' @return `Array.<H3Index>` - List of unidirectional edges
 #' @export
 h3_get_h3_unidirectional_edges_from_hexagon <- function(h3Index) {
-  .h3js_env$v8_context$call('h3.getH3UnidirectionalEdgesFromHexagon', h3Index)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.getH3UnidirectionalEdgesFromHexagon'), h3Index)
 }
 #' Get h3 unidirectional edge boundary
 #'
@@ -324,7 +324,7 @@ h3_get_h3_unidirectional_edge_boundary <- function(edgeIndex, formatAsGeoJson = 
 #' @return `Number` - Distance between hexagons, or a negative                              number if the distance could not be computed
 #' @export
 h3_distance <- function(origin, destination) {
-  .h3js_env$v8_context$call('h3.h3Distance', origin, destination)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.h3Distance'), origin, destination)
 }
 #' Hex area
 #'
@@ -362,7 +362,7 @@ h3_edge_length <- function(res, unit) {
 #' @return `Number` - Count
 #' @export
 h3_num_hexagons <- function(res) {
-  .h3js_env$v8_context$call('h3.numHexagons', res)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.numHexagons'), res)
 }
 #' Degs to rads
 #'
@@ -374,7 +374,7 @@ h3_num_hexagons <- function(res) {
 #' @return `Number` - Value in radians
 #' @export
 h3_degs_to_rads <- function(deg) {
-  .h3js_env$v8_context$call('h3.degsToRads', deg)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.degsToRads'), deg)
 }
 #' Rads to degs
 #'
@@ -386,5 +386,5 @@ h3_degs_to_rads <- function(deg) {
 #' @return `Number` - Value in degrees
 #' @export
 h3_rads_to_degs <- function(rad) {
-  .h3js_env$v8_context$call('h3.radsToDegs', rad)
+  .h3js_env$v8_context$call('vectorize', V8::JS('h3.radsToDegs'), rad)
 }

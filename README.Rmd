@@ -22,7 +22,7 @@ R bindings to [H3](https://github.com/uber/h3), a hexagon-based geographic grid 
 
 R bindings via native H3 C library can be found at [h3r](https://github.com/scottmmjackson/h3r). `h3r` is much faster but requires installing `h3` separately.
 
-**WARNING** Functions do not support vectorized operations currently. The return value of vectorized input is unspecified. You should map over vectorized input instead.
+**WARNING** Only functions that take non-array input support vectorized operations currently. The return value of other functions  when applying vectorized input may be unspecified. You should map over those input instead.
 
 ## Installation
 
@@ -112,11 +112,20 @@ c(
 ```{r}
 Houston <- list(lat = 29.7632836, lon = -95.3632715)
 
+# single arguments
 microbenchmark::microbenchmark(
   h3r::getIndexFromCoords(Houston$lat, Houston$lon, resolution = 5),
   h3_geo_to_h3(Houston$lat, Houston$lon, res = 5),
   h3r::getBoundingHexFromCoords(Houston$lat, Houston$lon, resolution = 5),
   h3_to_geo_boundary(h3_geo_to_h3(Houston$lat, Houston$lon, res = 5))
+)
+
+# vectorized input
+coordinates <- list(lat = runif(100, -90, 90), lon = runif(100, -180, 180))
+
+microbenchmark::microbenchmark(
+  pmap(coordinates, ~h3r::getIndexFromCoords(.x, .y, resolution = 5)),
+  h3_geo_to_h3(coordinates$lat, coordinates$lon, res = 5)
 )
 ```
 

@@ -16,9 +16,10 @@ R bindings via native H3 C library can be found at
 [h3r](https://github.com/scottmmjackson/h3r). `h3r` is much faster but
 requires installing `h3` separately.
 
-**WARNING** Functions do not support vectorized operations currently.
-The return value of vectorized input is unspecified. You should map over
-vectorized input instead.
+**WARNING** Only functions that take non-array input support vectorized
+operations currently. The return value of other functions when applying
+vectorized input may be unspecified. You should map over those input
+instead.
 
 ## Installation
 
@@ -125,6 +126,7 @@ c(
 ``` r
 Houston <- list(lat = 29.7632836, lon = -95.3632715)
 
+# single arguments
 microbenchmark::microbenchmark(
   h3r::getIndexFromCoords(Houston$lat, Houston$lon, resolution = 5),
   h3_geo_to_h3(Houston$lat, Houston$lon, res = 5),
@@ -138,8 +140,23 @@ microbenchmark::microbenchmark(
 #>  h3r::getBoundingHexFromCoords(Houston$lat, Houston$lon, resolution = 5)
 #>      h3_to_geo_boundary(h3_geo_to_h3(Houston$lat, Houston$lon, res = 5))
 #>       min        lq       mean    median        uq       max neval
-#>    12.222   22.1705   42.58583   39.2685   47.2505   260.753   100
-#>   696.615  872.3365 1558.20883 1153.9360 1531.1255 16486.304   100
-#>    17.736   26.0950  129.76199   41.6460   57.4520  7903.174   100
-#>  1355.409 1830.2050 3086.73508 2481.1620 3711.8015 10519.621   100
+#>    11.572   24.7375   41.46644   39.6285   52.1510   122.485   100
+#>   742.427 1147.9030 1995.58544 1601.6880 2330.8450 11489.859   100
+#>    17.031   27.6205  221.48883   50.7200   70.5675 16793.250   100
+#>  1500.967 2104.0835 3411.27699 2920.7360 3930.8230 14837.502   100
+
+# vectorized input
+coordinates <- list(lat = runif(100, -90, 90), lon = runif(100, -180, 180))
+
+microbenchmark::microbenchmark(
+  pmap(coordinates, ~h3r::getIndexFromCoords(.x, .y, resolution = 5)),
+  h3_geo_to_h3(coordinates$lat, coordinates$lon, res = 5)
+)
+#> Unit: microseconds
+#>                                                                 expr
+#>  pmap(coordinates, ~h3r::getIndexFromCoords(.x, .y, resolution = 5))
+#>              h3_geo_to_h3(coordinates$lat, coordinates$lon, res = 5)
+#>       min       lq     mean   median       uq       max neval
+#>  1508.317 1847.437 3011.063 2236.570 2907.621 38565.621   100
+#>   817.205 1114.620 1768.592 1368.635 1822.631  8248.186   100
 ```
